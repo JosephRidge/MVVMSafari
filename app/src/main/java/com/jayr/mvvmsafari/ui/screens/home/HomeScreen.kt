@@ -9,6 +9,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -17,17 +18,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jayr.mvvmsafari.data.models.StudentModel
 
 @Composable
 fun HomeScreen(
+    homeScreenViewModel: HomeScreenViewModel = viewModel(),
     modifier: Modifier
 ){
 //    states
     var nameInput by remember { mutableStateOf(TextFieldValue("")) }
     var courseInput by remember { mutableStateOf(TextFieldValue("")) }
     var ageInput by remember { mutableStateOf(TextFieldValue("")) }
-    var student by remember { mutableStateOf(StudentModel()) }
+//    var student by remember { mutableStateOf(StudentModel()) }
+    var student = homeScreenViewModel.student.collectAsState()
 
 //     ui
     Column(
@@ -53,11 +57,11 @@ fun HomeScreen(
 
         OutlinedButton(
             onClick = {
-                student = StudentModel(
-                    name=nameInput.text,
-                    age = ageInput.text.toInt(),
-                    course = courseInput.text
-                )
+    homeScreenViewModel.setStudentDetails(
+        name = nameInput.text,
+        age= ageInput.text.toInt(),
+        course = courseInput.text
+        )
             }
         ) {
             Text(text="create student")
@@ -65,13 +69,13 @@ fun HomeScreen(
         HorizontalDivider()
 
         Text(
-            text = student.name
+            text = student.value.name
         )
         Text(
-            text = student.age.toString()
+            text = student.value.age.toString()
         )
         Text(
-            text = student.course
+            text = student.value.course
         )
     }
 }
