@@ -53,6 +53,6 @@ however, in a case whereby I am streaming images from the net I getting the data
 
 
 ### Relevant Resources:
-- https://developer.android.com/develop/ui/compose/libraries  
+- [Attain the ViewModel dependency](https://developer.android.com/develop/ui/compose/libraries)  
 - [Understanding the purpose of the backing property](https://www.youtube.com/watch?t=1313&v=0FF19HJDqMo)
 
