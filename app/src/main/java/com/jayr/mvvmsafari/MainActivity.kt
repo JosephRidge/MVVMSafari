@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.jayr.mvvmsafari.ui.screens.hobby.HobbyScreen
 import com.jayr.mvvmsafari.ui.screens.home.HomeScreen
 import com.jayr.mvvmsafari.ui.theme.MVVMSafariTheme
 
@@ -21,7 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MVVMSafariTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    HomeScreen(
+                    HobbyScreen(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
