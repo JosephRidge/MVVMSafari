@@ -38,15 +38,15 @@ however, in a case whereby I am streaming images from the net I getting the data
     - Methods => Often the CRUD and other parts involving manipulating the data
 ```agsl
   
-    class HobbyViewModel : ViewModel() {
+    class HomeScreenViewModel:ViewModel() {
+        // states- think about this as data
+        private val _student = MutableStateFlow<StudentModel>(StudentModel()) // backing property 
+        val student = _student.asStateFlow() // how it is exposed 
     
-          //    states
-          private val _hobby = MutableStateFlow(HobbyModel())
-          val hobby = _hobby.asStateFlow()
-      
-          //    methods => CRUD
-          fun createHobby(name: String, description: String) {
-              _hobby.value = HobbyModel(name= name, description = description)
+    
+        // methods=> CRUD
+        fun setStudentDetails(name:String, age:Int, course:String){
+            _student.value = StudentModel(name = name, age = age, course = course)
         }
     }
 ```
